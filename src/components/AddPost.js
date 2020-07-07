@@ -10,7 +10,13 @@ class AddPost extends Component {
 
     onInputChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value,
+            title: event.target.value,
+        });
+    };
+
+    onInputChange2 = (event) => {
+        this.setState({
+            body: event.target.value,
         });
     };
 

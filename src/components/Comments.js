@@ -10,6 +10,7 @@ class Comments extends Component {
                 <Comment
                     key={index} 
                     comment={comment}
+                    fetchComments={this.props.fetchComments}
                     deleteComment={this.props.deleteComment}
                 />
             )

@@ -44,14 +44,14 @@ class App extends Component {
   };
 
   editPost = (postObj, postId) => {
-    const isUpdatedPost = p => {
-      return p._id === postId;
-    };
+    // const isUpdatedPost = p => {
+    //   return p._id === postId;
+    // };
 
     PostModel.update(postId, postObj)
     .then((res) => {
-      let posts = this.state.posts;
-      posts.find(isUpdatedPost)._id = postObj._id;
+      // let posts = this.state.posts;
+      // posts.find(isUpdatedPost)._id = postObj._id;
       this.fetchPosts();
     });
   };

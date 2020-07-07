@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EditPost from './EditPost';
 import Comments from './Comments';
 import AddComment from './AddComment';
 import CommentModel from '../models/Comment';
@@ -6,8 +7,16 @@ import CommentModel from '../models/Comment';
 
 class Post extends Component {
     state = {
-        comments: []
+        comments: [],
+        formStyle: {display: 'none'},
+        bodyStyle: {display: 'block'},
     }
+
+    toggleBodyForm = () => {
+        (this.state.formStyle.display === 'block')
+        ? this.setState({ formStyle: {display: 'none'}, bodyStyle: {display: 'block'} })
+        : this.setState({ formStyle: {display: 'block'}, bodyStyle: {display: 'none'} })
+    };
 
     componentDidMount() {
         this.fetchComments();  
@@ -44,21 +53,30 @@ class Post extends Component {
     render() {
         return (
             <div className="post">
-                <p><b>{this.props.post.title}</b></p>
-                <p>Body: {this.props.post.body}</p>
-                <button
-                    className="edit"
-                    // onClick={this.componentDidCatch......}
-                >Edit
-                </button>
-                <button
-                    className="del"
-                    onClick={this.delPost}>Remove this post
-                </button>
+                <div style={this.state.bodyStyle} >
+                    <p><b>{this.props.post.title}</b></p>
+                    <p>Body: {this.props.post.body}</p>
+                    <button
+                        className="edit"
+                        onClick={this.toggleBodyForm}
+                    >Edit
+                    </button>
+                    <button
+                        className="del"
+                        onClick={this.delPost}>Remove this post
+                    </button>
+                </div>
+                <EditPost
+                    post={this.props.post}
+                    editPost={this.props.editPost}
+                    style={this.state.formStyle}
+                    toggleBodyForm={this.toggleBodyForm} 
+                />
                 <Comments
                     comments={this.state.comments}
                     postId={this.props.post._id}
                     deleteComment={this.deleteComment}
+                    fetchComments={this.fetchComments}
                 />
                 <AddComment 
                     postId={this.props.post._id}
