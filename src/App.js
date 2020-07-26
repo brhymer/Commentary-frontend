@@ -6,13 +6,11 @@ import './App.css';
 
 class App extends Component {
   state = {
-    posts: [],
-    // comments: []
+    posts: []
   }
 
   componentDidMount() {
     this.fetchPosts();
-    // this.fetchComments();  
   };
 
   fetchPosts = async () => {
@@ -23,20 +21,13 @@ class App extends Component {
     })
   }
 
-  // fetchComments = async () => {
-  //   await CommentModel.all().then((res) => {
-  //     this.setState ({
-  //       comments: res.data.comments
-  //     });
-  //   })
-  // }
-
-  createPost = (title, body) => {
-    let newPost = {
-      title: title,
-      body: body
-    };
-    PostModel.create(newPost).then((res) => {
+  createPost = (post, imgFile) => {
+    // let newPost = {
+    //   title: title,
+      // imgUrl: imgUrl,
+      // body: body
+    // };
+    PostModel.create(post, imgFile).then((res) => {
       let posts = this.state.posts;
       posts.push(res.data);
       this.fetchPosts();

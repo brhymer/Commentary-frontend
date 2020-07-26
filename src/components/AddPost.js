@@ -5,7 +5,9 @@ class AddPost extends Component {
         title: '',
         body: '',
         comments: 0,
-        rating: 0
+        rating: 0,
+        // imgUrl: '',
+        // imgPublicUrl: ''
     }
 
     onInputChange = (event) => {
@@ -14,7 +16,14 @@ class AddPost extends Component {
         });
     };
 
-    onInputChange2 = (event) => {
+    // onInputChange2 = (event) => {
+    //     const imgFile = event.target.files[0];
+    //     this.setState({
+    //         imgUrl: event.target.value,
+    //     });
+    // };
+
+    onInputChange3 = (event) => {
         this.setState({
             body: event.target.value,
         });
@@ -22,10 +31,12 @@ class AddPost extends Component {
 
     onFormSubmit = (event) => {
         event.preventDefault();
+        // console.log(this.state.imgUrl)
+        // const imgFile = ''
         let post = this.state;
         this.props.createPost(post);
         this.setState({
-            title: '', body: ''
+            title: '', body: '', imgUrl: ''
         })
     };
 
@@ -33,10 +44,27 @@ class AddPost extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.onFormSubmit} >
-                    <input onChange={this.onInputChange} value={this.state.title} placeholder="Add a Post - Title" />
+                <form onSubmit={this.onFormSubmit} encType="multipart/form-data" method="POST">
+                    <input 
+                        onChange={this.onInputChange} 
+                        value={this.state.title} 
+                        placeholder="Add a Post - Title" 
+                    />
                     <br/>
-                    <textarea onChange={this.onInputChange2} value={this.state.body} rows="5" cols="60" placeholder="Body goes here" />
+                    {/* <input 
+                        name="imgFile" id="imgFile"
+                        type="file" accept="image/*" 
+                        onChange={this.onInputChange2} 
+                        value={this.state.imgUrl} 
+                        placeholder="Add image to this post" 
+                    /> */}
+                    <br/>
+                    <textarea 
+                        onChange={this.onInputChange3} 
+                        value={this.state.body} 
+                        rows="5" cols="60" 
+                        placeholder="Body goes here" 
+                    />
                     <br/>
                     <button type="submit">Submit</button>
                 </form>

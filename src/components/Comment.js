@@ -42,7 +42,7 @@ class Comment extends Component {
                     </button>
                     <button
                         className="del"
-                        onClick={this.delPost}>Remove this comment
+                        onClick={this.delCom}>Remove this comment
                     </button>
                 </div>
                 <EditComment

@@ -20,8 +20,6 @@ class Posts extends Component {
             <div id="postarea">
                 Post Area
                 { postList }
-                {/* <Post/>
-                <Post/> */}
             </div>
         );
     }

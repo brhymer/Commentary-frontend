@@ -16,6 +16,12 @@ class EditPost extends Component {
 
     onInputChange2 = (event) => {
         this.setState({
+            imgUrl: event.target.value,
+        });
+    };
+
+    onInputChange3 = (event) => {
+        this.setState({
             body: event.target.value,
         });
     };
@@ -39,7 +45,7 @@ class EditPost extends Component {
     render() {
         return (
             <div style ={ this.props.style }>
-                <form onSubmit={ this.onSubmit }>
+                <form onSubmit={ this.onSubmit } encType="multipart/form-data" method="POST">
                     <label name="Title"/>
                     <p>Post title</p>
                     <input
@@ -48,6 +54,15 @@ class EditPost extends Component {
                         type= "text"
                         value={ this.state.title }
                     />
+                    <p>Add image</p>
+                    <input
+                        name="imgFile" id="imgFile"
+                        type="file" accept="image/*" 
+                        onChange={this.onInputChange2} 
+                        value={this.state.imgUrl} 
+                        placeholder="Add image to this post" 
+                    />
+                    <br/>
                     <p>Post body</p>
                     <textarea
                         onChange={ this.onInputChange2 }

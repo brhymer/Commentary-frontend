@@ -8,8 +8,10 @@ class PostModel {
         return request;
     };
 
-    static create = (post) => {
-        let request = axios.post(endPoint, post.title, post.body, post.ratings);
+    static create = (post, imgFile) => {
+        console.log(post)
+        // let request = axios.post(endPoint, post.title, post.imgUrl, post.body);
+        let request = axios.post(endPoint, post, imgFile);
         return request;
     };
 
