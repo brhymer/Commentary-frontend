@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import { Image } from "cloudinary-react";
 
 function ImageUpload(props) {
@@ -9,9 +9,20 @@ function ImageUpload(props) {
     previewFile(file);
   }
 
-//   const removeImage = () => {
-//     // cloudinary.uploader.destroy('zombie', function(err, result) { console.log(result) });
-//   }
+  const removeImage = async () => {
+
+    try {
+        await fetch(`http://localhost:3002/images/delete/${postId}`, {
+            method: 'DELETE',
+            body: JSON.stringify({ id: postId}),
+            headers: {'Content-type': 'application/JSON'}
+
+        })
+    } catch (err) {
+        console.error(err)
+    }
+    displayImage();
+  }
 
   const previewFile = (file) => {
     const reader = new FileReader();
@@ -24,6 +35,7 @@ function ImageUpload(props) {
     event.preventDefault();
     if(!prevSource) return;
     uploadImage(prevSource);
+    displayImage();
   }
 
   const postId = props.id
@@ -37,15 +49,18 @@ function ImageUpload(props) {
        })
     } catch (err) {
         console.error(err);
+    } 
+    finally {
+    displayImage()
     }
   }
 
   const displayImage = async () => {
     try {
-        const res = await fetch('http://localhost:3002/images')
+        const res = await fetch(`http://localhost:3002/images/upload/${postId}`)
         const data = await res.json()
         setImage(data)
-        // console.log(data)
+        console.log(data)
     } catch (err) {
         console.error(err);
     }
@@ -57,15 +72,18 @@ function ImageUpload(props) {
 
   return (
       <div>
-          {image && image.filter( i => i.includes(postId)).map((id, index) => (
-          <Image
-            cloudName="nurts"
-            key ={index}
-            publicId={id}
-          />
-          ) 
-          )}        
 
+          {Array.isArray(image) && image != '' ?  image.map((id, index) => (
+          <div key ={`${index}i`}>
+            <img src={`https://res.cloudinary.com/nurts/image/upload/v1/upload/${postId}?${Math.floor(Math.random() * 100)}`}/>
+            {/* <Image
+                cloudName="nurts"
+                // key = {`${index}i`}
+                publicId={id}
+            /> */}
+            <button className="removeimage" onClick={removeImage}>Remove this image</button>
+          </div>
+          )) :
           <form onSubmit={submitFile}>
             <input 
                 name="imgFile" id="imgFile"
@@ -75,12 +93,10 @@ function ImageUpload(props) {
             />
             <button type="submit">Upload</button>
           </form>
-        {/* //   } */}
+            }
           {prevSource && (
             <img src={prevSource} alt='' style={{height: '300px'}}/>   
           )}
-        {/* {images ? <button onClick={() => removeImage("image")}>Remove Image</button> : 
-        <button onClick={() => beginUpload("image")}>Upload Image</button>} */}
     </div>
   );
 }

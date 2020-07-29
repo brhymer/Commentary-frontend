@@ -8,7 +8,7 @@ class Comments extends Component {
         }).map((comment, index) => {
             return (
                 <Comment
-                    key={index} 
+                    key={`${index}c`} 
                     comment={comment}
                     fetchComments={this.props.fetchComments}
                     deleteComment={this.props.deleteComment}

@@ -7,7 +7,7 @@ class Posts extends Component {
         let postList = this.props.posts.map((post, index) => {
             return (
                 <Post
-                    key={index}
+                    key={`${index}p`}
                     post={post}
                     editPost={this.props.editPost}
                     deletePost={this.props.deletePost}
@@ -17,8 +17,7 @@ class Posts extends Component {
         })
 
         return (
-            <div id="postarea">
-                Post Area
+            <div >
                 { postList }
             </div>
         );

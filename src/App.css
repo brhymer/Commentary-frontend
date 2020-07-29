@@ -1,20 +1,72 @@
+
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(179, 216, 231);
+  padding: 0 1%;
+}
+
+body {
+  background: linear-gradient(315deg, transparent 75%, #252546 0)-10px 0,
+  linear-gradient(45deg, transparent 75%, #252546 0)-10px 0,
+  linear-gradient(135deg, #141d52 50%, transparent 0) 0 0,
+  linear-gradient(45deg, #201b6a 50%, #161c56 0) 0 0 #163056;
+  background-size: 20px 20px;;
+}
+
+img {
+  height: 300px;
+}
+
+button {
+  background: rgb(49, 76, 77);
+}
+
+input, textarea {
+  background: inherit;
+  border-bottom: none;
+  border-right: none;
+  color: rgb(179, 216, 231);
+}
+
+::placeholder {
+  color: rgb(179, 216, 231);
+}
+
+.removeimage {
+  float: right;
+  margin: 120px 20% 140px 0;
+  font: 20px;
+  line-height: 60px;
+
+}
+
+.titlearea {
+  background: rgb(20, 30, 61)
+}
+
 .commentarea {
   border: 1px black solid;
   padding: 5px;
   margin: 5px;
-  background: blanchedalmond;
+  background: rgb(11, 58, 70);
+  border: 1px solid rgb(179, 216, 231);
+  border-radius: 8px;
 }
 
 .post {
   border: 1px black solid;
   padding: 5px;
   margin: 5px;
-  background: rgb(183, 202, 191);
+  background: rgb(20, 30, 61);
+  border: 1px solid rgb(179, 216, 231);
+  border-radius: 8px;
 }
 
 #postarea {
   border: 1px black solid;
   padding: 5px;
   margin: 5px;
-  background: rgb(174, 206, 206);
+  background: rgb(9, 51, 25);
+  border: 1px solid rgb(179, 216, 231);
+  border-radius: 8px;
 }

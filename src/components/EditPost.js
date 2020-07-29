@@ -14,11 +14,11 @@ class EditPost extends Component {
         });
     };
 
-    onInputChange2 = (event) => {
-        this.setState({
-            imgUrl: event.target.value,
-        });
-    };
+    // onInputChange2 = (event) => {
+    //     this.setState({
+    //         imgUrl: event.target.value,
+    //     });
+    // };
 
     onInputChange3 = (event) => {
         this.setState({
@@ -54,18 +54,18 @@ class EditPost extends Component {
                         type= "text"
                         value={ this.state.title }
                     />
-                    <p>Add image</p>
+                    {/* <p>Add image</p>
                     <input
                         name="imgFile" id="imgFile"
                         type="file" accept="image/*" 
                         onChange={this.onInputChange2} 
                         value={this.state.imgUrl} 
                         placeholder="Add image to this post" 
-                    />
+                    /> */}
                     <br/>
                     <p>Post body</p>
                     <textarea
-                        onChange={ this.onInputChange2 }
+                        onChange={ this.onInputChange3 }
                         placeholder={ this.props.body }
                         type= "text"
                         value={ this.state.body }

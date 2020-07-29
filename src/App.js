@@ -58,15 +58,20 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Hello there</h1>
-        <h2>How do you feel about <span className="giant">TEXT</span>?</h2>
-        <AddPost 
-          createPost={this.createPost}/>
-        <Posts 
-          posts={this.state.posts}
-          editPost={this.editPost}
-          deletePost={this.deletePost}
-        /> 
+        <section className="titlearea">
+          <h1>Hello there</h1>
+          <h2>How do you feel about <span className="giant">TEXT</span>?</h2>
+        </section>
+        <section id="postarea">
+          Post Area
+          <AddPost 
+            createPost={this.createPost}/>
+          <Posts 
+            posts={this.state.posts}
+            editPost={this.editPost}
+            deletePost={this.deletePost}
+          /> 
+        </section>
       </div>
     );
   }
